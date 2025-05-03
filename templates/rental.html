@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Farming Equipment Rental</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/rental.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
+    integrity="sha512-Fo3rlrZj/k7ujTnH2N2xxa0glnZO7ycN9Rn6UBbHgD8+o1cXyJLQyWy32LIn1rqzg6HECwB6ZYpG9p1S6fZ8ng==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="rental.css">
+</head>
+<body>
+  <header class="fade-in">
+    <h1>Farming Equipment Rental</h1>
+    <p>Rent premium equipment with secure, hassle-free payment options.</p>
+  </header>
+
+  <div class="container fade-in">
+    <!-- Available Equipment Section with Dropdown Lists -->
+    <div class="card equipment-list">
+      <h2>Available Equipment</h2>
+      <div class="dropdown">
+        <label for="tillage-equipment">Tillage Equipment</label>
+        <select id="tillage-equipment">
+          <option value="ripper" data-price="100" data-name="Ripper">Ripper - ₹100/day</option>
+          <option value="hydraulic-harrow" data-price="600" data-name="Hydraulic Harrow">Hydraulic Harrow - ₹600/day</option>
+          <option value="sub-soiler" data-price="400" data-name="Sub Soiler">Sub Soiler - ₹400/day</option>
+        </select>
+        <button class="add-btn" onclick="addSelectedEquipment('tillage-equipment')">Add to Cart</button>
+      </div>
+      <div class="dropdown">
+        <label for="tractor-equipment">Tractor Equipment</label>
+        <select id="tractor-equipment">
+          <option value="regular-tractor" data-price="500" data-name="Regular Tractor">Regular Tractor - ₹500/day</option>
+          <option value="heavy-tractor" data-price="800" data-name="Heavy Tractor">Heavy Tractor - ₹800/day</option>
+          <option value="utility-tractor" data-price="450" data-name="Utility Tractor">Utility Tractor - ₹450/day</option>
+        </select>
+        <button class="add-btn" onclick="addSelectedEquipment('tractor-equipment')">Add to Cart</button>
+      </div>
+      <div class="dropdown">
+        <label for="seeding-equipment">Seeding Equipment</label>
+        <select id="seeding-equipment">
+          <option value="seeder" data-price="450" data-name="Seeder">Seeder - ₹450/day</option>
+          <option value="zero-till" data-price="400" data-name="Zero Till">Zero Till - ₹400/day</option>
+          <option value="post-hole-digger" data-price="500" data-name="Post Hole Digger">Post Hole Digger - ₹500/day</option>
+        </select>
+        <button class="add-btn" onclick="addSelectedEquipment('seeding-equipment')">Add to Cart</button>
+      </div>
+      <div class="dropdown">
+        <label for="harvest-equipment">Harvest & Straw Management</label>
+        <select id="harvest-equipment">
+          <option value="multi-crop-harvester" data-price="600" data-name="Multi Crop Harvester">Multi Crop Harvester - ₹600/day</option>
+          <option value="sugar-cane-loader" data-price="450" data-name="Sugar Cane Loader">Sugar Cane Loader - ₹450/day</option>
+          <option value="combine-harvester" data-price="400" data-name="Combine Harvester">Combine Harvester - ₹400/day</option>
+        </select>
+        <button class="add-btn" onclick="addSelectedEquipment('harvest-equipment')">Add to Cart</button>
+      </div>
+      <div class="dropdown">
+        <label for="landscaping-equipment">Landscaping Equipment</label>
+        <select id="landscaping-equipment">
+          <option value="landscape-rake" data-price="200" data-name="Landscape Rake">Landscape Rake - ₹200/day</option>
+          <option value="leveler" data-price="650" data-name="Leveler">Leveler - ₹650/day</option>
+          <option value="rotary-cutter" data-price="550" data-name="Rotary Cutter">Rotary Cutter - ₹550/day</option>
+        </select>
+        <button class="add-btn" onclick="addSelectedEquipment('landscaping-equipment')">Add to Cart</button>
+      </div>
+      <div class="dropdown">
+        <label for="crop-protection-equipment">Crop Protection Equipment</label>
+        <select id="crop-protection-equipment">
+          <option value="boom-sprayer" data-price="400" data-name="Boom Sprayer">Boom Sprayer - ₹400/day</option>
+          <option value="fertilizer-spreader" data-price="600" data-name="Fertilizer Spreader">Fertilizer Spreader - ₹600/day</option>
+          <option value="drone" data-price="600" data-name="Drone">Drone - ₹600/day</option>
+        </select>
+        <button class="add-btn" onclick="addSelectedEquipment('crop-protection-equipment')">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Cart & Rental Form Section -->
+    <div class="card cart-section">
+      <h2>Your Cart</h2>
+      <ul class="cart-items" id="cartItems">
+        <li>No items added yet.</li>
+      </ul>
+      <p class="cart-total" id="cartTotal">Total: ₹0</p>
+      <form id="rentalForm">
+        <h2>Rental Details</h2>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required placeholder="Your full name" />
+        <label for="email">Email</label>
+        <input type="email" id="email" required placeholder="Your email address" />
+        <label for="address">Address</label>
+        <textarea id="address" required placeholder="Your address" rows="3"></textarea>
+        <label for="rentalDuration">Rental Duration (days)</label>
+        <input type="number" id="rentalDuration" required min="1" value="1" />
+        <button type="submit" class="submit-btn">Submit Rental Request</button>
+      </form>
+    </div>
+  </div>
+  <footer style="background:#1d7a1d; color:#fff; text-align:center; padding:20px;">
+    <p>&copy; 2025 Farming Equipment Rental. All Rights Reserved.</p>
+  </footer>
+  <script src="rental.js"></script>
+  <script src="{{ url_for('static', filename='js/rental.js') }}"></script>
+</body>
+</html>

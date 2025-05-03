@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Krishi Kaushal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Email validation
+        function validateEmail(email) {
+            const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return regex.test(email);
+        }
+    
+        // Phone number validation
+        function validatePhoneNumber(phone) {
+            const regex = /^[0-9]{10}$/;
+            return regex.test(phone);
+        }
+    
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            let email = document.getElementById('email').value;
+            let phone = document.getElementById('phone').value;
+    
+            if (!validateEmail(email)) {
+                alert('Invalid Email format!');
+                event.preventDefault();
+            } else if (!validatePhoneNumber(phone)) {
+                alert('Phone number must be 10 digits!');
+                event.preventDefault();
+            }
+        });
+    </script>
+    
+</head>
+<body>
+
+    <div class="container">
+        <div class="image-side"></div>
+        
+        <div class="content-side">
+            <div class="login-heading">
+                <img src="{{ url_for('static', filename='img/GTlogo.png') }}" alt="Krishi Kaushal Logo" title="Krishi Kaushal">
+                <span>Krishi Kaushal</span>
+            </div>
+            
+            <p id="sub-heading-1">Login</p>
+            <p id="sub-heading-2">Access your account</p>
+            <p id="sub-heading-3">Welcome back to Krishi Kaushal. Ready to provide the best farming resources and equipment rental services to you!</p>
+
+            <div class="form">
+            
+                <form method="POST" action="{{ url_for('auth.login') }}">
+                    <label for="email">Email</label><br>
+                    <input type="text" id="email" name="email" class="input-field" placeholder="Enter Email" required>
+            
+                    <label for="password">Password</label><br>
+                    <input type="password" id="password" name="password" class="input-field" placeholder="Enter Password" required>
+            
+                    <div class="rememberme">
+                        <div class="rem">
+                            <input type="checkbox" id="remember-me-check" name="remember_me">
+                            <label for="remember-me-check" id="rem">Remember me</label>
+                        </div>
+                        <p id="reset-password">Reset Password?</p>
+                    </div>
+            
+                    <button type="submit" class="submit">Sign In</button>
+                </form>
+            </div>            
+
+            <p id="footer">Don't have an account yet? <a href="{{ url_for('auth.signup') }}">SignUp Now</a></p>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krishi Kaushal - Smart Farming Equipment Rental</title>
+  <link rel="icon" href="{{ url_for('static', filename='img/GTlogo.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <a href="{{ url_for('home.index') }}">
+        <img src="{{ url_for('static', filename='img/GTlogo.png') }}" alt="Krishi Kaushal Logo" class="logo">
+      </a>      
+      <h1>Krishi Kaushal</h1>
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search for equipment..." class="search-input" id="searchInput" method="GET">
+        <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="auth">
+      {% if current_user %}
+        <div class="profile-icon-container" onclick="toggleProfileSidebar()">
+          <i class="fas fa-user-circle profile-icon"></i>
+          <div class="username">{{ current_user }}</div>
+        </div>
+      {% else %}
+        <a href="{{ url_for('auth.login') }}">Login</a>
+        <a href="{{ url_for('auth.signup') }}">Sign Up</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="{{ url_for('equipment.equipments') }}"><i class="fa fa-shopping-cart"></i> Equipment</a></li>
+      <li><a href="{{ url_for('home.about') }}"><i class="fa fa-info-circle"></i> About Us</a></li>
+      <li><a href="{{ url_for('home.contact') }}"><i class="fa fa-envelope"></i> Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+<section class="hero">
+  <video autoplay muted loop playsinline class="hero-bg-video">
+    <source src="{{ url_for('static', filename='img/Pexels Video.mp4') }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-overlay">
+    <div class="hero-text">
+      <h2>Empowering Farmers with Smart Equipment</h2>
+      <p>Join us to access a wide range of modern machinery and agricultural expertise.</p>
+    </div>
+    <div class="hero-info">
+      <p>We provide cutting-edge agricultural solutions to farmers looking to improve productivity and efficiency. Here's what we offer:</p>
+      <br>
+      <ul>
+        <li>Wide selection of high-quality farming equipment for rent.</li>
+        <li>Affordable rental plans tailored to your needs.</li>
+      </ul>
+      <a href="{{ url_for('equipment.equipments') }}" class="btn">Explore Equipment</a>
+    </div>
+  </div>
+</section>
+
+  <!-- Featured Equipment Section -->
+  <section class="featured-equipment-section">
+    <h2>Featured Equipment for Rent</h2>
+    <p>Explore our top-of-the-line farming equipment available for rent. Get the best tools for your farming needs at affordable rates.</p>
+    <div class="equipment-cards">
+      <div class="equipment-card">
+        <img src="{{ url_for('static', filename='img/tractor.jpg') }}" alt="Tractor">
+        <h3>Tractor</h3>
+        <p>Efficient, powerful tractors to help you with plowing, tilling, and more. Available in various sizes.</p>
+        <a href="{{ url_for('equipment.more_info', equipment_id=8) }}" class="btn">View Details</a>
+      </div>
+      <div class="equipment-card">
+        <img src="{{ url_for('static', filename='img/harvester.jpg') }}" alt="Harvester">
+        <h3>Harvester</h3>
+        <p>High-performance harvesters for quick and easy crop harvesting. Keep your farm operations smooth.</p>
+        <a href="{{ url_for('equipment.more_info', equipment_id=5) }}" class="btn">View Details</a>
+      </div>
+      <div class="equipment-card">
+        <img src="{{ url_for('static', filename='img/drone.jpg') }}" alt="Drone">
+        <h3>Farming Drones</h3>
+        <p>Drones can provide accurate field mapping including elevation information in the field.</p>
+        <a href="{{ url_for('equipment.more_info', equipment_id=7) }}" class="btn">View Details</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section">
+    <h2>Why Choose Krishi Kaushal?</h2>
+    <div class="benefits">
+      <div class="benefit-card">
+        <h3>Affordable Equipment</h3>
+        <p>Access a wide range of farming equipment at low rental prices. Save money and increase your productivity without the burden of purchasing expensive machinery.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Easy Access & Booking</h3>
+        <p>Booking equipment is quick and simple. Just select the machinery you need, check availability, and place an order online. It's as easy as a few clicks!</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Expert Guidance</h3>
+        <p>Get professional advice and tips from agricultural experts on best farming equipment practices and equipment usage to boost your farm's efficiency and yield.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Krishi Kaushal. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Flash Message -->
+  {% if first_login %}
+  <div id="flash-message" class="flash success">
+    Welcome, {{ user_name }}! You have successfully logged in.
+    <button onclick="document.getElementById('flash-message').style.display='none'">OK</button>
+  </div>
+  <script>
+    setTimeout(function() {
+      document.getElementById('flash-message').style.display = 'none';
+    }, 5000);
+  </script>
+  {% endif %}
+
+  <!-- External JS Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    // Function to toggle the mini profile sidebar
+    function toggleProfileSidebar() {
+      var sidebar = document.getElementById('profileSidebar');
+      sidebar.classList.toggle('active');
+    }
+  </script>
+
+  {% if current_user %}
+  <div id="profileSidebar" class="sidebar">
+    <div class="sidebar-content">
+      <span class="close-btn" onclick="toggleProfileSidebar()">&times;</span>
+      <ul class="profile-menu">
+        <li>
+          <a href="{{ url_for('auth.profile') }}">
+            <i class="fas fa-user-edit"></i> Customize Profile
+          </a>
+        </li>
+       <!-- <li>
+          <a href="{{ url_for('rental.my_rental') }}">
+            <i class="fas fa-tractor"></i> My Rental
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('rental.transaction_history') }}">
+            <i class="fas fa-history"></i> Transaction History
+          </a> 
+        </li> -->
+        <li>
+          <a href="{{ url_for('home.helpandsupport') }}">
+            <i class="fas fa-question-circle"></i> Help & Support
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('auth.logout') }}" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Available Equipment - Krishi Kaushal</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/GTlogo.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/equipments.css') }}" />
+</head>
+<body>
+<header>
+        <div class="logo-container">
+          <a href="{{ url_for('home.index') }}">
+          <img src="{{ url_for('static', filename='img/GTlogo.png') }}" alt="Krishi Kaushal Logo" class="logo">
+          </a>
+          <h1>Krishi Kaushal</h1>
+        </div>
+        <div class="search-bar">
+          <form action="{{ url_for('equipment.equipments') }}" method="GET" class="search-form">
+              <input type="text" name="search" placeholder="Search Equipment..." value="{{ search_query }}">
+              <button type="submit"><i class="fas fa-search"></i></button>
+          </form>
+      </div>
+      
+        <div class="auth">
+          {% if current_user %}
+            <div class="profile-icon-container" onclick="toggleProfileSidebar()">
+              <i class="fas fa-user-circle profile-icon"></i>
+              <div class="username">{{ current_user }}</div>
+            </div>
+          {% else %}
+            <a href="{{ url_for('auth.login') }}">Login</a>
+            <a href="{{ url_for('auth.signup') }}">Sign Up</a>
+          {% endif %}
+        </div>
+    </header>
+<div class="container">
+    
+    <div class="equipment-list">
+        {% for equipment in equipments %}
+        <div class="equipment-card">
+            <img src="{{ equipment.image_url }}" alt="{{ equipment.name }}">
+            <div class="equipment-info">
+                <h2>{{ equipment.name }}</h2>
+                <p class="price">₹{{ equipment.price }}</p>
+                <p>Available: {{ equipment.available_quantity }}</p>
+                <div class="equipment-buttons">
+                    <a href="{{ url_for('order.order', equipment_id=equipment.id) }}" class="rent-btn">Rent Now</a>
+                    <a href="{{ url_for('equipment.more_info', equipment_id=equipment.id) }}" class="info-btn">More Info</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Krishi Kaushal. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

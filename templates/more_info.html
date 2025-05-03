@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ equipment.name }} - Krishi Kaushal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/more_info.css') }}" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="equipment-detail">
+        <img src="{{ equipment.image_url }}" alt="{{ equipment.name }}">
+        <div class="detail-info">
+            <h1>{{ equipment.name }}</h1>
+            <p class="description">{{ equipment.description }}</p>
+            <p class="price">Price: ₹{{ equipment.price }}</p>
+            <p class="quantity">Available Quantity: {{ equipment.available_quantity }}</p>
+            <div class="detail-buttons">
+                {% if equipment.available_quantity > 0 %}
+                <a href="{{ url_for('order.order', equipment_id=equipment.id) }}" class="rent-btn">Rent Now</a>
+                {% else %}
+                <span class="not-available">Out of Stock</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
