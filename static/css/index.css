@@ -1,0 +1,465 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f9f4;
+    color: #333; 
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #1b9466;
+    color: white;
+}
+
+header .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header .logo-container .logo {
+    height: 50px;
+}
+
+header .logo-container h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    width: 40%; 
+    padding-right: 100px;
+}
+
+.search-input {
+    flex-grow: 1; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+    background-color: #e3f2fd; 
+    color: #333; 
+}
+
+.search-btn {
+    color: white;
+    background-color: #FF9800; 
+    border: none;
+    border-radius: 50%;
+    padding: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-btn:hover {
+    background-color: #FF9800; 
+    transform: scale(1.05); 
+}
+
+.search-btn i {
+    color: white;
+}
+
+.search-btn:focus {
+    outline: none;
+}
+
+/* Auth links */
+.auth a {
+    margin-left: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    background-color: #FF9800;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.auth a:hover {
+    background-color: #2E7D32;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #28855f; 
+    padding: 15px;
+    text-align: center;
+}
+
+.navbar ul {
+    list-style: none;
+    display: inline-flex;
+    gap: 40px;
+}
+
+.navbar ul li {
+    font-size: 18px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: #FF9800;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: relative;
+    z-index: 2;
+    color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.4); /* Optional dark overlay for contrast */
+}
+
+.hero-text h2 {
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.hero-text p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.hero-info {
+    max-width: 800px;
+}
+
+.hero-info h3 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero-info p {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.hero-info ul {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.hero-info ul li {
+    list-style-type: none;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.hero-info .btn {
+    background-color: #FF9800;
+    color: white;
+    padding: 15px 30px;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.hero-info .btn:hover {
+    background-color: #2E7D32;
+}
+
+/* Featured Equipment Section */
+.featured-equipment-section {
+    background-color: #e3f2fd;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.featured-equipment-section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #388E3C; /* Dark green header */
+}
+
+.featured-equipment-section p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #555; /* Light grey text */
+}
+
+.equipment-cards {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.equipment-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 22%;
+    text-align: center;
+}
+
+.equipment-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.equipment-card h3 {
+    margin-top: 15px;
+    font-size: 22px;
+    color: #388E3C; /* Green text for equipment titles */
+}
+
+.equipment-card p {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #555;
+}
+
+.equipment-card .btn {
+    background-color: #FF9800; /* Orange for button */
+    color: #2E7D32;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.equipment-card .btn:hover {
+    background-color: #388E3C; /* Green on hover */
+}
+
+/* Benefits Section */
+.benefits-section {
+    background-color: #e3f2fd; /* Light blue background */
+    padding: 40px;
+    text-align: center;
+}
+
+.benefits-section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #000; /* Dark green header */
+}
+
+.benefits {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.benefit-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.benefit-card h3 {
+    font-size: 24px;
+    color: #388E3C; /* Green for headings */
+    margin-bottom: 15px;
+}
+
+.benefit-card p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Call to Action Section */
+.cta-section {
+    background-color: #44bd92; /* Dark green */
+    color: #fff;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.cta-section h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.cta-section p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.cta-section .btn {
+    background-color: #FF9800; /* Orange for CTA button */
+    color: white;
+    padding: 15px 30px;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-section .btn:hover {
+    background-color: #388E3C; /* Green on hover */
+}
+
+/* Footer Section */
+footer {
+    background-color: #1b9453; /* Same green as header */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+}
+
+footer p {
+    margin: 0;
+}
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .search-bar {
+        width: 80%;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* Profile Icon Container */
+.profile-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #333;
+    padding-right: 20px;
+}
+
+/* Profile Icon */
+.profile-icon {
+    font-size: 2.5em;
+}
+
+/* Username below the icon */
+.username {
+    font-size: 0.9em;
+    margin-top: 4px;
+}
+
+/* Mini Profile Sidebar (positioned near the auth area) */
+.sidebar {
+    position: absolute;
+    top: 70px; /* Adjust as needed to appear just below the header */
+    right: 20px;
+    width: 250px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    display: none;
+    z-index: 1001;
+}
+
+.sidebar.active {
+    display: block;
+}
+
+/* Sidebar Content */
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.close-btn {
+    font-size: 24px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+/* Profile Menu Styling */
+.profile-menu {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.profile-menu li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.profile-menu li:last-child {
+    border-bottom: none;
+}
+
+.profile-menu li a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.profile-menu li a i {
+    margin-right: 8px;
+}
+
+/* Logout Button Styling */
+.logout-btn {
+    color: red;
+    font-weight: bold;
+}
